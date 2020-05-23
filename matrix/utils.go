@@ -43,7 +43,7 @@ func deepCopy(src interface{}) (interface{}, error) {
 
 func mergeByPath(path Path, dst interface{}, merge map[interface{}]interface{}) {
 	for _, item := range path {
-		if item.indexType == IndexTypeInt {
+		if item.indexType == IndexTypeArray {
 			dst = dst.([]interface{})[item.index]
 		} else {
 			var key interface{} = item.key

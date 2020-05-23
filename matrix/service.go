@@ -137,12 +137,7 @@ func (ctx *bypassContext) dfsForMap(input map[interface{}]interface{}) (interfac
 			continue
 		}
 
-		if !ok {
-			mapModified[key] = value
-			continue
-		}
-
-		ctx.push(NewPathItem(IndexTypeString, key))
+		ctx.push(NewPathItem(IndexTypeMap, key))
 		mapModified[key], err = ctx.dfsForAbstractTree(value)
 		ctx.pop()
 
@@ -164,7 +159,7 @@ func (ctx *bypassContext) dfsForAbstractTree(input interface{}) (interface{}, er
 	if ok {
 		arrayModified := make([]interface{}, len(arrayType))
 		for index, v := range arrayType {
-			ctx.push(NewPathItem(IndexTypeInt, index))
+			ctx.push(NewPathItem(IndexTypeArray, index))
 			arrayModified[index], err = ctx.dfsForAbstractTree(v)
 			ctx.pop()
 			if err != nil {
