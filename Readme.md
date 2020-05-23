@@ -2,7 +2,7 @@
 
 ## About
 
-Converts YAML in a such way
+Converts YAML in a such way - from:
 ```yaml
 task:
   name: first
@@ -10,7 +10,7 @@ task:
     - sub: Lint
     - sub: Test
 ```
-to 
+to:
 ```yaml
 - task:
     name: first
@@ -23,13 +23,15 @@ Nesting matrix inside other matrix allowed. Matrix modifier must be always array
 
 ## Instructions
 
-Install `task` https://taskfile.dev/#/installation
+### Preparations
+
+Install `task` https://taskfile.dev/#/installation 
 
 ```sh
 task --list # for available tasks
 ```
 
-## CLI
+### build CLI
 
 ```sh
 task build # builds binary
@@ -41,7 +43,7 @@ task build # builds binary
 Install golangci-lint https://golangci-lint.run/usage/install/ v1.26.0
 
 ```sh
-task attach_hooks # attaches git hooks for develompent
+task attach_hooks # attaches git hooks for development
 task test # run test
 task lint # run linters
 ```
