@@ -1,5 +1,26 @@
 # YAML matrix
 
+## About
+
+Converts YAML in a such way
+```yaml
+task:
+  name: first
+  matrix:
+    - sub: Lint
+    - sub: Test
+```
+to 
+```yaml
+- task:
+    name: first
+    sub: Lint
+- task:
+    name: first
+    sub: Test
+   ```
+Nesting matrix inside other matrix allowed. Matrix modifier must be always array of mappings.
+
 ## Instructions
 
 Install `task` https://taskfile.dev/#/installation

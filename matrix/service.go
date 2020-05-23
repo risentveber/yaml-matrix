@@ -40,7 +40,6 @@ func (ctx *bypassContext) FindAndApplyModifications(input interface{}) ([]interf
 	}
 	combinations := cartN(variants...)
 
-	// receive products through channel
 	final := make([]interface{}, len(combinations))
 	for i, combination := range combinations {
 		withSus, err := deepCopy(result)
@@ -118,10 +117,13 @@ func (ctx *bypassContext) dfsForMap(input map[interface{}]interface{}) (interfac
 		if ok && stringKey == ctx.fieldName {
 			options, ok := value.([]interface{})
 			if !ok {
-				return nil, fmt.Errorf("%s.%s invalid type %T", ctx.toPath().String(), ctx.fieldName, value)
+				return nil, fmt.Errorf("%s.%s has nvalid type %T, must be []interface {}", ctx.toPath().String(), ctx.fieldName, value)
 			}
 			var optionsAfterSubstitution []interface{}
-			for _, option := range options {
+			for i, option := range options {
+				if _, ok := option.(map[interface{}]interface{}); !ok {
+					return nil, fmt.Errorf("%s.%s[%d] has invalid type %T, must be map[interface {}]interface {}", ctx.toPath().String(), ctx.fieldName, i, option)
+				}
 				nestedCtx := bypassContext{
 					fieldName: ctx.fieldName,
 				}

@@ -31,7 +31,11 @@ func TestContainerCreation(t *testing.T) {
 		},
 		{
 			input: "../examples/error-input.yaml",
-			err:   ".task.matrix.matrix invalid type map[interface {}]interface {}",
+			err:   ".task.matrix.matrix has nvalid type map[interface {}]interface {}, must be []interface {}",
+		},
+		{
+			input: "../examples/error-scalar-input.yaml",
+			err:   ".task.matrix[1] has invalid type string, must be map[interface {}]interface {}",
 		},
 	}
 
