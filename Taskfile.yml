@@ -8,12 +8,16 @@ tasks:
       - go tool cover -html=./tmp/cover.out -o ./tmp/cover.html
       - open ./tmp/cover.html
   attach_hooks:
-    desc: "Attaches git hooks"
+    desc: "Attach git hooks"
     cmds:
       - cp ./tools/pre-commit.sh ./.git/hooks/pre-commit
       - cp ./tools/pre-push.sh ./.git/hooks/pre-push
       - chmod 777 ./.git/hooks/pre-commit
       - chmod 777 ./.git/hooks/pre-push
+  build:
+    desc: "Build cli tool"
+    cmds:
+      - go build -o ./cmd/cli/cli.bin ./cmd/cli
   lint:
     desc: "Run linter"
     cmds:

@@ -129,7 +129,6 @@ func (ctx *bypassContext) dfsForMap(input map[interface{}]interface{}) (interfac
 				if err != nil {
 					return nil, fmt.Errorf("%s.matrix%v", ctx.toPath().String(), err)
 				}
-				fmt.Println(nestedSubstitutions)
 				optionsAfterSubstitution = append(optionsAfterSubstitution, flatten(nestedSubstitutions)...)
 			}
 			ctx.addSubstitution(optionsAfterSubstitution)
