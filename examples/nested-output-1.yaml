@@ -1,0 +1,63 @@
+- task:
+    container:
+      image: node:latest
+    lint_script: npm run lint
+    name: Lint
+    node_modules_cache:
+      fingerprint_script: cat package-lock.json
+      folder: node_modules
+      populate_script: npm ci
+- task:
+    container:
+      image: node:latest
+    name: Relay
+    node_modules_cache:
+      fingerprint_script: cat package-lock.json
+      folder: node_modules
+      populate_script: npm ci
+    relay_script: npm run relay
+- task:
+    container:
+      image: node:latest
+    name: Type Check
+    node_modules_cache:
+      fingerprint_script: cat package-lock.json
+      folder: node_modules
+      populate_script: npm ci
+    typecheck_script: npm run typecheck
+- task:
+    container:
+      image: node:latest
+    name: Prettier
+    node_modules_cache:
+      fingerprint_script: cat package-lock.json
+      folder: node_modules
+      populate_script: npm ci
+    prettier_script: npm run prettier-check
+- task:
+    container:
+      image: node:latest
+    name: Test
+    node_modules_cache:
+      fingerprint_script: cat package-lock.json
+      folder: node_modules
+      populate_script: npm ci
+    test_script: npm run test
+- task:
+    container:
+      image: node:13
+    name: Test
+    node_modules_cache:
+      fingerprint_script: cat package-lock.json
+      folder: node_modules
+      populate_script: npm ci
+    test_script: npm run test
+- task:
+    container:
+      image: node:12
+    name: Test
+    node_modules_cache:
+      fingerprint_script: cat package-lock.json
+      folder: node_modules
+      populate_script: npm ci
+    test_script: npm run test

@@ -1,0 +1,12 @@
+task:
+  container:
+    image: node:latest
+  node_modules_cache:
+    folder: node_modules
+    fingerprint_script: cat package-lock.json
+    populate_script: npm ci
+  matrix:
+    - name: Lint
+      matrix:
+        lint_script: npm run lint
+        details: 123
